@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:manga_app/core/utils/logger.dart';
 import 'package:manga_app/model/manga_detail_model.dart';
 import 'package:manga_app/model/top_manga_model.dart';
 
@@ -26,8 +27,10 @@ class NetworkManager implements TopMangaBase, MangaDetailBase {
       var response = await _dio.get("top/manga?limit=$limit");
       final res = TopMangaResponseModel?.fromJson(response.data);
 
+      Log.instance.d(res);
       return res;
     } catch (e) {
+      Log.instance.e(e);
       return null;
     }
   }
@@ -38,11 +41,11 @@ class NetworkManager implements TopMangaBase, MangaDetailBase {
       var response = await _dio.get("manga/$id");
       final res = MangaDetailResponseModel?.fromJson(response.data);
 
+      Log.instance.d(res);
       return res;
     } catch (e) {
+      Log.instance.e(e);
       return null;
     }
   }
 }
-
-enum Filter { bypopularity, favorite, upcoming }
