@@ -9,9 +9,9 @@ class TopMangaCubit extends Cubit<TopMangaState> {
   TopMangaCubit() : super(TopMangaInitialState());
   final TopMangaController _controller = TopMangaController();
 
-  Future<void> fetchTopManga(String filter) async {
+  Future<void> fetchTopManga() async {
     emit(TopMangaLoadingState());
-    final response = await _controller.fetchTopManga(filter);
+    final response = await _controller.fetchTopManga();
     if (response != null) {
       emit(TopMangaLoadedState(response));
     } else {
