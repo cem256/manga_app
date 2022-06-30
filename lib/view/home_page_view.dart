@@ -3,8 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 import 'package:manga_app/core/router/app_router.dart';
 import 'package:manga_app/cubit/top_manga/top_manga_cubit.dart';
-import 'package:manga_app/model/top_manga_model.dart';
+
 import 'package:manga_app/view/manga_detail_view.dart';
+
+import '../model/top_manga_model.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);
@@ -25,7 +27,7 @@ class _HomePageViewState extends State<HomePageView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Top Manga")),
+      appBar: _appbar(),
       body: BlocConsumer<TopMangaCubit, TopMangaState>(
         listener: (context, state) {
           if (state is TopMangaLoadedState && state.model != null) {
@@ -46,6 +48,8 @@ class _HomePageViewState extends State<HomePageView> {
       ),
     );
   }
+
+  AppBar _appbar() => AppBar(title: const Text("Top Manga"));
 }
 
 class _TopMangaGridViewWidget extends StatelessWidget {
@@ -70,7 +74,7 @@ class _TopMangaGridViewWidget extends StatelessWidget {
           return InkWell(
             onTap: () {
               AppRouter().push(
-                  context, MangaDetailView(mangaId: topMangaList[index].malId));
+                  context, MangaDetailView(mangaDetails: topMangaList[index]));
             },
             child: Stack(
                 children: [_stackImage(index), _stackText(context, index)]),
