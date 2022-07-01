@@ -52,7 +52,7 @@ class _HomePageViewState extends State<HomePageView> {
   }
 
   AppBar _appbar() => AppBar(
-        title: const Text("Top Manga"),
+        title: const Text("Home"),
       );
 }
 

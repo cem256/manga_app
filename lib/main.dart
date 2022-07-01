@@ -17,10 +17,9 @@ class MangaApp extends StatelessWidget {
         BlocProvider<TopMangaCubit>(create: (_) => TopMangaCubit()),
         BlocProvider<SearchMangaCubit>(create: (_) => SearchMangaCubit()),
       ],
-      child: MaterialApp(
-        theme: ThemeData.dark(),
+      child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: const BottomNavbarView(),
+        home: BottomNavbarView(),
       ),
     );
   }

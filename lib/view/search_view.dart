@@ -24,30 +24,26 @@ class _SearchViewState extends State<SearchView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: SizedBox(
-          height: kToolbarHeight - context.lowValue,
-          child: TextField(
-            controller: userInput,
-            onChanged: (userInput) {
-              if (userInput.length > 2) {
-                EasyDebounce.debounce(
-                    "searchManga", const Duration(milliseconds: 1000), () {
-                  context.read<SearchMangaCubit>().searchManga(userInput);
-                });
-              }
-            },
-            keyboardType: TextInputType.text,
-            decoration: InputDecoration(
-                contentPadding: EdgeInsets.zero,
-                prefixIcon: const Icon(Icons.search),
-                suffixIcon: IconButton(
-                    onPressed: () {
-                      userInput.text = "";
-                      topMangaList.clear();
-                    },
-                    icon: const Icon(Icons.clear)),
-                border: const OutlineInputBorder(),
-                hintText: "Search..."),
+        title: TextField(
+          controller: userInput,
+          onChanged: (userInput) {
+            if (userInput.length > 2) {
+              EasyDebounce.debounce(
+                  "searchManga", const Duration(milliseconds: 1000), () {
+                context.read<SearchMangaCubit>().searchManga(userInput);
+              });
+            }
+          },
+          autofocus: true,
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            hintText: "Search...",
+            prefixIcon: const Icon(Icons.search),
+            suffixIcon: IconButton(
+                onPressed: () {
+                  userInput.text = "";
+                },
+                icon: const Icon(Icons.clear)),
           ),
         ),
       ),
@@ -56,6 +52,7 @@ class _SearchViewState extends State<SearchView> {
           if (state is SearchMangaLoadedState &&
               state.model != null &&
               state.model?.data != null) {
+            topMangaList.clear();
             topMangaList.addAll(state.model!.data ?? []);
             Log.instance.d(topMangaList);
           }

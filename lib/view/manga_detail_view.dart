@@ -17,22 +17,28 @@ class _MangaDetailViewState extends State<MangaDetailView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appbar(),
-      body: Padding(
-        padding: context.paddingAllDefault,
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _mangaImage(context),
-              SizedBox(height: context.lowValue),
-              _mangaTitle(context),
-              SizedBox(height: context.lowValue),
-              _mangaRatingPopularity(context),
-              SizedBox(height: context.lowValue),
-              _mangaSynopsis(context),
-              SizedBox(height: context.dynamicHeight(0.1)),
-            ],
-          ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(alignment: Alignment.centerLeft, children: [
+              _mangaFadeImage(context),
+              _mangaImageCard(context),
+            ]),
+            Padding(
+              padding: context.paddingAllDefault,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: context.lowValue),
+                  _mangaTitle(context),
+                  SizedBox(height: context.lowValue),
+                  _mangaSynopsis(context),
+                  SizedBox(height: context.dynamicHeight(0.1)),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -40,17 +46,44 @@ class _MangaDetailViewState extends State<MangaDetailView> {
 
   AppBar _appbar() {
     return AppBar(
-      title: Text(widget.mangaDetails.title ?? ""),
+      title: const Text("Details"),
+      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))],
     );
   }
 
-  SizedBox _mangaImage(BuildContext context) {
+  SizedBox _mangaFadeImage(BuildContext context) {
     return SizedBox(
-      height: context.dynamicHeight(0.4),
+      height: context.dynamicHeight(0.3),
       width: double.infinity,
-      child: Image.network(
-        widget.mangaDetails.images?.jpg?.imageUrl ?? "",
-        fit: BoxFit.fitWidth,
+      child: ShaderMask(
+        shaderCallback: (rect) {
+          return const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Colors.white, Colors.transparent],
+          ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
+        },
+        blendMode: BlendMode.dstIn,
+        child: Image.network(
+          widget.mangaDetails.images?.jpg?.imageUrl ?? "",
+          fit: BoxFit.fitWidth,
+        ),
+      ),
+    );
+  }
+
+  Padding _mangaImageCard(BuildContext context) {
+    return Padding(
+      padding: context.paddingAllDefault,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12),
+        child: SizedBox(
+          width: context.dynamicWidth(0.3),
+          child: Image.network(
+            fit: BoxFit.fill,
+            widget.mangaDetails.images?.jpg?.imageUrl ?? '',
+          ),
+        ),
       ),
     );
   }
@@ -66,33 +99,10 @@ class _MangaDetailViewState extends State<MangaDetailView> {
     );
   }
 
-  Row _mangaRatingPopularity(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Rating ${widget.mangaDetails.score ?? "Unknown"} / 10",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            SizedBox(height: context.lowValue),
-            Text(
-              "Popularity #${widget.mangaDetails.popularity}",
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-          ],
-        ),
-        IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))
-      ],
-    );
-  }
-
   Text _mangaSynopsis(BuildContext context) {
     return Text(
       widget.mangaDetails.synopsis ?? "",
-      style: Theme.of(context).textTheme.bodyText1,
+      style: Theme.of(context).textTheme.titleMedium,
     );
   }
 }
