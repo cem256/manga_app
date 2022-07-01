@@ -74,12 +74,12 @@ class _MangaDetailViewState extends State<MangaDetailView> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Rating: ${widget.mangaDetails.score} / 10",
+              "Rating ${widget.mangaDetails.score ?? "Unknown"} / 10",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: context.lowValue),
             Text(
-              "Popularity: ${widget.mangaDetails.popularity}",
+              "Popularity #${widget.mangaDetails.popularity}",
               style: Theme.of(context).textTheme.titleMedium,
             ),
           ],

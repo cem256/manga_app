@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/cubit/top_manga/top_manga_cubit.dart';
 import 'package:manga_app/view/bottom_navbar_view.dart';
 
+import 'cubit/search_manga/search_manga_cubit.dart';
+
 void main() => runApp(const MangaApp());
 
 class MangaApp extends StatelessWidget {
@@ -13,10 +15,12 @@ class MangaApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<TopMangaCubit>(create: (_) => TopMangaCubit()),
+        BlocProvider<SearchMangaCubit>(create: (_) => SearchMangaCubit()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData.dark(),
         debugShowCheckedModeBanner: false,
-        home: BottomNavbarView(),
+        home: const BottomNavbarView(),
       ),
     );
   }

@@ -30,7 +30,9 @@ class _HomePageViewState extends State<HomePageView> {
       appBar: _appbar(),
       body: BlocConsumer<TopMangaCubit, TopMangaState>(
         listener: (context, state) {
-          if (state is TopMangaLoadedState && state.model != null) {
+          if (state is TopMangaLoadedState &&
+              state.model != null &&
+              state.model?.data != null) {
             topMangaList.addAll(state.model!.data ?? []);
           }
         },
@@ -49,7 +51,9 @@ class _HomePageViewState extends State<HomePageView> {
     );
   }
 
-  AppBar _appbar() => AppBar(title: const Text("Top Manga"));
+  AppBar _appbar() => AppBar(
+        title: const Text("Top Manga"),
+      );
 }
 
 class _TopMangaGridViewWidget extends StatelessWidget {
@@ -77,6 +81,7 @@ class _TopMangaGridViewWidget extends StatelessWidget {
                   context, MangaDetailView(mangaDetails: topMangaList[index]));
             },
             child: Stack(
+                alignment: Alignment.bottomCenter,
                 children: [_stackImage(index), _stackText(context, index)]),
           );
         });
@@ -92,24 +97,21 @@ class _TopMangaGridViewWidget extends StatelessWidget {
     );
   }
 
-  Align _stackText(BuildContext context, int index) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        padding: context.paddingHorizontalLow,
-        height: context.dynamicHeight(0.08),
-        width: double.infinity,
-        decoration: BoxDecoration(color: Colors.black.withOpacity(0.6)),
-        child: Center(
-          child: Text(
-            topMangaList[index].title ?? '',
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .bodyLarge
-                ?.copyWith(color: Colors.white),
-            maxLines: 2,
-          ),
+  Container _stackText(BuildContext context, int index) {
+    return Container(
+      padding: context.paddingHorizontalLow,
+      height: context.dynamicHeight(0.08),
+      width: double.infinity,
+      decoration: BoxDecoration(color: Colors.black.withOpacity(0.6)),
+      child: Center(
+        child: Text(
+          topMangaList[index].title ?? '',
+          textAlign: TextAlign.center,
+          style: Theme.of(context)
+              .textTheme
+              .bodyLarge
+              ?.copyWith(color: Colors.white),
+          maxLines: 2,
         ),
       ),
     );
