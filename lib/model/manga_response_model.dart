@@ -1,10 +1,10 @@
-class TopMangaResponseModel {
+class MangaResponseModel {
   Pagination? pagination;
   List<Data>? data;
 
-  TopMangaResponseModel({this.pagination, this.data});
+  MangaResponseModel({this.pagination, this.data});
 
-  TopMangaResponseModel.fromJson(Map<String, dynamic> json) {
+  MangaResponseModel.fromJson(Map<String, dynamic> json) {
     pagination = json['pagination'] != null
         ? Pagination.fromJson(json['pagination'])
         : null;
@@ -92,8 +92,8 @@ class Data {
   String? status;
   bool? publishing;
   Published? published;
-  double? score;
-  double? scored;
+  dynamic score;
+  dynamic scored;
   int? scoredBy;
   int? rank;
   int? popularity;

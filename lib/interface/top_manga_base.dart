@@ -1,5 +1,5 @@
-import 'package:manga_app/model/top_manga_model.dart';
+import 'package:manga_app/model/manga_response_model.dart';
 
 abstract class TopMangaBase {
-  Future<TopMangaResponseModel?> fetchTopManga();
+  Future<MangaResponseModel?> fetchTopManga();
 }

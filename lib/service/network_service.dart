@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:manga_app/core/utils/logger.dart';
 import 'package:manga_app/interface/search_manga_base.dart';
-import 'package:manga_app/model/top_manga_model.dart';
+import 'package:manga_app/model/manga_response_model.dart';
 import '../interface/top_manga_base.dart';
 
 class NetworkManager implements TopMangaBase, SearchMangaBase {
@@ -18,12 +18,12 @@ class NetworkManager implements TopMangaBase, SearchMangaBase {
   }
 
   @override
-  Future<TopMangaResponseModel?> fetchTopManga() async {
+  Future<MangaResponseModel?> fetchTopManga() async {
     try {
       const int limit = 96;
 
       var response = await _dio.get("top/manga?limit=$limit");
-      final res = TopMangaResponseModel?.fromJson(response.data);
+      final res = MangaResponseModel?.fromJson(response.data);
 
       Log.instance.d(res);
       return res;
@@ -34,11 +34,11 @@ class NetworkManager implements TopMangaBase, SearchMangaBase {
   }
 
   @override
-  Future<TopMangaResponseModel?> searchManga(String query) async {
+  Future<MangaResponseModel?> searchManga(String query) async {
     try {
       var response =
           await _dio.get("manga?q=$query&order_by=members&sort=desc");
-      final res = TopMangaResponseModel?.fromJson(response.data);
+      final res = MangaResponseModel?.fromJson(response.data);
 
       Log.instance.d(res);
       return res;

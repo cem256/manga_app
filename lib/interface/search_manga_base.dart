@@ -1,5 +1,5 @@
-import '../model/top_manga_model.dart';
+import '../model/manga_response_model.dart';
 
 abstract class SearchMangaBase {
-  Future<TopMangaResponseModel?> searchManga(String query);
+  Future<MangaResponseModel?> searchManga(String query);
 }

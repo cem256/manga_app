@@ -8,7 +8,7 @@ class TopMangaInitialState extends TopMangaState {}
 class TopMangaLoadingState extends TopMangaState {}
 
 class TopMangaLoadedState extends TopMangaState {
-  final TopMangaResponseModel? model;
+  final MangaResponseModel? model;
 
   TopMangaLoadedState(this.model);
 }

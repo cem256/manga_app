@@ -8,7 +8,7 @@ class SearchMangaInitialState extends SearchMangaState {}
 class SearchMangaLoadingState extends SearchMangaState {}
 
 class SearchMangaLoadedState extends SearchMangaState {
-  final TopMangaResponseModel? model;
+  final MangaResponseModel? model;
 
   SearchMangaLoadedState(this.model);
 }

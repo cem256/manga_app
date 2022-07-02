@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 
-import '../model/top_manga_model.dart';
+import '../model/manga_response_model.dart';
 
 class MangaDetailView extends StatefulWidget {
   final Data mangaDetails;
@@ -23,7 +23,10 @@ class _MangaDetailViewState extends State<MangaDetailView> {
           children: [
             Stack(alignment: Alignment.centerLeft, children: [
               _mangaFadeImage(context),
-              _mangaImageCard(context),
+              Padding(
+                padding: context.paddingAllDefault,
+                child: _mangaImageCard(context),
+              ),
             ]),
             Padding(
               padding: context.paddingAllDefault,
@@ -72,17 +75,14 @@ class _MangaDetailViewState extends State<MangaDetailView> {
     );
   }
 
-  Padding _mangaImageCard(BuildContext context) {
-    return Padding(
-      padding: context.paddingAllDefault,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
-        child: SizedBox(
-          width: context.dynamicWidth(0.3),
-          child: Image.network(
-            fit: BoxFit.fill,
-            widget.mangaDetails.images?.jpg?.imageUrl ?? '',
-          ),
+  ClipRRect _mangaImageCard(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: SizedBox(
+        width: context.dynamicWidth(0.3),
+        child: Image.network(
+          fit: BoxFit.fill,
+          widget.mangaDetails.images?.jpg?.imageUrl ?? '',
         ),
       ),
     );
