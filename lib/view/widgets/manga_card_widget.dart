@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
+import '../../core/constants/view_constants.dart';
 import '../../core/router/app_router.dart';
 import '../../model/manga_response_model.dart';
-import '../manga_detail_view.dart';
+import '../detail/manga_detail_view.dart';
 
 class MangaCardWidget extends StatelessWidget {
   const MangaCardWidget(this.mangaList, this.index, {Key? key})
@@ -19,7 +20,7 @@ class MangaCardWidget extends StatelessWidget {
             .push(context, MangaDetailView(mangaDetails: mangaList[index]));
       },
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: ViewConstants.borderCircular,
         child: Stack(
             alignment: Alignment.bottomCenter,
             children: [_stackImage(), _stackText(context)]),

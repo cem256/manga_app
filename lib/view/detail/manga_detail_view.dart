@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 
-import '../model/manga_response_model.dart';
+import '../../core/constants/view_constants.dart';
+import '../../model/manga_response_model.dart';
 
 class MangaDetailView extends StatefulWidget {
   final Data mangaDetails;
@@ -77,7 +78,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
 
   ClipRRect _mangaImageCard(BuildContext context) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(12),
+      borderRadius: ViewConstants.borderCircular,
       child: SizedBox(
         width: context.dynamicWidth(0.3),
         child: Image.network(

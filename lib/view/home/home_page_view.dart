@@ -4,7 +4,7 @@ import 'package:manga_app/cubit/top_manga/top_manga_cubit.dart';
 
 import 'package:manga_app/view/widgets/manga_gridview_widget.dart';
 
-import '../model/manga_response_model.dart';
+import '../../model/manga_response_model.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);

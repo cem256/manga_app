@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:manga_app/view/favorites_view.dart';
-import 'package:manga_app/view/home_page_view.dart';
-import 'package:manga_app/view/search_view.dart';
+import 'package:manga_app/view/favorites/favorites_view.dart';
+import 'package:manga_app/view/home/home_page_view.dart';
+import 'package:manga_app/view/search/search_view.dart';
 
 class BottomNavbarView extends StatefulWidget {
   const BottomNavbarView({Key? key}) : super(key: key);

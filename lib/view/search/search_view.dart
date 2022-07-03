@@ -5,7 +5,7 @@ import 'package:manga_app/core/utils/logger.dart';
 import 'package:manga_app/cubit/search_manga/search_manga_cubit.dart';
 import 'package:manga_app/view/widgets/manga_gridview_widget.dart';
 
-import '../model/manga_response_model.dart';
+import '../../model/manga_response_model.dart';
 
 class SearchView extends StatefulWidget {
   const SearchView({Key? key}) : super(key: key);
