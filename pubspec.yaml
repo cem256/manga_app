@@ -27,21 +27,18 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  build_runner: ^2.1.11
   cupertino_icons: ^1.0.2
-
+  dio: ^4.0.6
+  easy_debounce: ^2.0.2+1
   flutter:
     sdk: flutter
-  
-  # timer
-  easy_debounce: ^2.0.2+1
-  # network
-  dio: ^4.0.6
-
-  # debugging
-  logger: ^1.1.0
-  # state management
-  provider: ^6.0.3
   flutter_bloc: ^8.0.1
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  hive_generator: ^1.1.3
+  logger: ^1.1.0
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_lints: ^2.0.0

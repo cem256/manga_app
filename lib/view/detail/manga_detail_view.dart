@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:manga_app/cache/cache_manager.dart';
+import 'package:manga_app/core/constants/cache_contants.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
+import 'package:manga_app/interface/cache_manager_interface.dart';
 
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
@@ -14,6 +17,19 @@ class MangaDetailView extends StatefulWidget {
 }
 
 class _MangaDetailViewState extends State<MangaDetailView> {
+  ICacheManager<Data> cacheManager =
+      CacheManager(HiveConstants.favoritesBoxName);
+
+  @override
+  void initState() {
+    initCache();
+    super.initState();
+  }
+
+  Future<void> initCache() async {
+    await cacheManager.init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +67,13 @@ class _MangaDetailViewState extends State<MangaDetailView> {
   AppBar _appbar() {
     return AppBar(
       title: const Text("Details"),
-      actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.favorite))],
+      actions: [
+        IconButton(
+            onPressed: () async {
+              await cacheManager.putItem(widget.mangaDetails);
+            },
+            icon: const Icon(Icons.favorite))
+      ],
     );
   }
 
