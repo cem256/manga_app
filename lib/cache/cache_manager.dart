@@ -45,10 +45,8 @@ class CacheManager extends ICacheManager<Data> {
   Future<void> putItem(Data item) async {
     if (_box?.containsKey(item.malId) ?? false) {
       await deleteItem(item.malId);
-      print("removed");
     } else {
       await _box?.put(item.malId, item);
-      print("added");
     }
   }
 }

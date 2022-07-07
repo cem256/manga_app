@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:manga_app/cache/cache_manager.dart';
 import 'package:manga_app/core/constants/cache_contants.dart';
@@ -90,8 +91,9 @@ class _MangaDetailViewState extends State<MangaDetailView> {
           ).createShader(Rect.fromLTRB(0, 0, rect.width, rect.height));
         },
         blendMode: BlendMode.dstIn,
-        child: Image.network(
-          widget.mangaDetails.images?.jpg?.imageUrl ?? "",
+        child: CachedNetworkImage(
+          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fitWidth,
         ),
       ),
@@ -103,9 +105,10 @@ class _MangaDetailViewState extends State<MangaDetailView> {
       borderRadius: ViewConstants.borderCircular,
       child: SizedBox(
         width: context.dynamicWidth(0.3),
-        child: Image.network(
+        child: CachedNetworkImage(
+          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
+          errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fill,
-          widget.mangaDetails.images?.jpg?.imageUrl ?? '',
         ),
       ),
     );

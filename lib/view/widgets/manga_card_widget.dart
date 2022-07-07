@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 import '../../core/constants/view_constants.dart';
@@ -31,9 +32,10 @@ class MangaCardWidget extends StatelessWidget {
   SizedBox _stackImage() {
     return SizedBox(
       width: double.infinity,
-      child: Image.network(
+      child: CachedNetworkImage(
+        imageUrl: "${mangaList[index].images?.jpg?.imageUrl}",
+        errorWidget: (context, url, error) => const Icon(Icons.error),
         fit: BoxFit.fill,
-        mangaList[index].images?.jpg?.imageUrl ?? '',
       ),
     );
   }

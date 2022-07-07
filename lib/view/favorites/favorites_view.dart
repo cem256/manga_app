@@ -26,7 +26,6 @@ class _FavoritesViewState extends State<FavoritesView> {
   Future<void> initCache() async {
     await cacheManager.init();
     favoritesList = cacheManager.getValues();
-    print(favoritesList);
     setState(() {});
   }
 
