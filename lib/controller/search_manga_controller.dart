@@ -1,9 +1,9 @@
-import 'package:manga_app/interface/search_manga_base.dart';
+import 'package:manga_app/interface/search_manga_interface.dart';
 
 import '../model/manga_response_model.dart';
 import '../service/network_service.dart';
 
-class SearchMangaController extends SearchMangaBase {
+class SearchMangaController extends ISearchManga<MangaResponseModel?> {
   final NetworkManager _service = NetworkManager.instance;
 
   @override

@@ -1,10 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:manga_app/core/utils/logger.dart';
-import 'package:manga_app/interface/search_manga_base.dart';
+import 'package:manga_app/interface/search_manga_interface.dart';
 import 'package:manga_app/model/manga_response_model.dart';
-import '../interface/top_manga_base.dart';
+import '../interface/top_manga_interface.dart';
 
-class NetworkManager implements TopMangaBase, SearchMangaBase {
+class NetworkManager
+    implements
+        ITopManga<MangaResponseModel?>,
+        ISearchManga<MangaResponseModel?> {
   late Dio _dio;
 
   static NetworkManager? _instace;
