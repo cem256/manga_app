@@ -141,21 +141,15 @@ class JpgAdapter extends TypeAdapter<Jpg> {
     };
     return Jpg(
       imageUrl: fields[0] as String?,
-      smallImageUrl: fields[1] as String?,
-      largeImageUrl: fields[2] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Jpg obj) {
     writer
-      ..writeByte(3)
-      ..writeByte(0)
-      ..write(obj.imageUrl)
       ..writeByte(1)
-      ..write(obj.smallImageUrl)
-      ..writeByte(2)
-      ..write(obj.largeImageUrl);
+      ..writeByte(0)
+      ..write(obj.imageUrl);
   }
 
   @override

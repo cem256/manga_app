@@ -4,9 +4,11 @@ import 'package:manga_app/cache/cache_manager.dart';
 import 'package:manga_app/core/constants/cache_contants.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 import 'package:manga_app/interface/cache_manager_interface.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
+import '../../provider/favorites_provider.dart';
 
 class MangaDetailView extends StatefulWidget {
   final Data mangaDetails;
@@ -71,9 +73,17 @@ class _MangaDetailViewState extends State<MangaDetailView> {
       actions: [
         IconButton(
             onPressed: () async {
+              context.read<FavoritesProvider>().updateList();
               await cacheManager.putItem(widget.mangaDetails);
             },
-            icon: const Icon(Icons.favorite))
+            icon: const Icon(Icons.favorite),
+            color: context
+                    .watch<FavoritesProvider>()
+                    .getValues()
+                    .map((e) => e.malId)
+                    .contains(widget.mangaDetails.malId)
+                ? Colors.red
+                : null)
       ],
     );
   }

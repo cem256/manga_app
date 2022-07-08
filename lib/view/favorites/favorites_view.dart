@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:manga_app/cache/cache_manager.dart';
-import 'package:manga_app/core/constants/cache_contants.dart';
-import 'package:manga_app/interface/cache_manager_interface.dart';
-import '../../model/manga_response_model.dart';
+import 'package:manga_app/provider/favorites_provider.dart';
+import 'package:provider/provider.dart';
 import '../widgets/manga_gridview_widget.dart';
 
 class FavoritesView extends StatefulWidget {
@@ -13,26 +11,15 @@ class FavoritesView extends StatefulWidget {
 }
 
 class _FavoritesViewState extends State<FavoritesView> {
-  ICacheManager<Data> cacheManager =
-      CacheManager(HiveConstants.favoritesBoxName);
-  List<Data> favoritesList = [];
-
-  @override
-  void initState() {
-    super.initState();
-    initCache();
-  }
-
-  Future<void> initCache() async {
-    await cacheManager.init();
-    favoritesList = cacheManager.getValues();
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Favorites")),
-        body: MangaGridViewWidget(mangaList: favoritesList));
+        body: context.watch<FavoritesProvider>().getValues().isNotEmpty
+            ? MangaGridViewWidget(
+                mangaList: context.watch<FavoritesProvider>().getValues())
+            : const Center(
+                child: Text("You don't have any favorites."),
+              ));
   }
 }
