@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:manga_app/cache/cache_manager.dart';
 import 'package:manga_app/core/constants/cache_contants.dart';
-import 'package:manga_app/interface/cache_manager_interface.dart';
-
 import '../model/manga_response_model.dart';
 
 class FavoritesProvider extends ChangeNotifier {
-  ICacheManager<Data> cacheManager =
+  final CacheManager _cacheManager =
       CacheManager(HiveConstants.favoritesBoxName);
 
-  List<Data> getValues() {
-    cacheManager.init();
-    return cacheManager.getValues();
+  bool isFavorite(int? id) {
+    _cacheManager.init();
+    return _cacheManager.getValues().map((e) => e.malId).contains(id);
   }
 
-  void updateList() {
-    cacheManager.init();
-    cacheManager.getValues();
+  Future<void> putItem(Data data) async {
+    await _cacheManager.putItem(data);
     notifyListeners();
+  }
+
+  List<Data> getFavoritesList() {
+    _cacheManager.init();
+    return _cacheManager.getValues();
   }
 }

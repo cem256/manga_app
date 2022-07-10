@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:manga_app/cubit/top_manga/top_manga_cubit.dart';
@@ -9,6 +10,9 @@ import 'cubit/search_manga/search_manga_cubit.dart';
 
 void main() async {
   await Hive.initFlutter();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (context) => FavoritesProvider())
   ], child: const MangaApp()));
@@ -24,9 +28,13 @@ class MangaApp extends StatelessWidget {
         BlocProvider<TopMangaCubit>(create: (_) => TopMangaCubit()),
         BlocProvider<SearchMangaCubit>(create: (_) => SearchMangaCubit()),
       ],
-      child: const MaterialApp(
+      child: MaterialApp(
+        theme: ThemeData(
+          colorScheme: const ColorScheme.dark(
+              primary: Colors.white, secondary: Colors.white),
+        ),
         debugShowCheckedModeBanner: false,
-        home: BottomNavbarView(),
+        home: const BottomNavbarView(),
       ),
     );
   }

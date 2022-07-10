@@ -7,16 +7,11 @@ import 'package:manga_app/view/widgets/manga_gridview_widget.dart';
 
 import '../../model/manga_response_model.dart';
 
-class SearchView extends StatefulWidget {
-  const SearchView({Key? key}) : super(key: key);
+class SearchView extends StatelessWidget {
+  SearchView({Key? key}) : super(key: key);
 
-  @override
-  State<SearchView> createState() => _SearchViewState();
-}
-
-class _SearchViewState extends State<SearchView> {
   final TextEditingController userInput = TextEditingController();
-  List<Data> searchMangaList = <Data>[];
+  final List<Data> searchMangaList = <Data>[];
 
   @override
   Widget build(BuildContext context) {

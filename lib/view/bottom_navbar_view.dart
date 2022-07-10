@@ -12,11 +12,7 @@ class BottomNavbarView extends StatefulWidget {
 
 class _BottomNavbarViewState extends State<BottomNavbarView> {
   int _currentIndex = 0;
-  static final pages = [
-    const HomePageView(),
-    const FavoritesView(),
-    const SearchView()
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,4 +31,10 @@ class _BottomNavbarViewState extends State<BottomNavbarView> {
       body: pages[_currentIndex],
     );
   }
+
+  static final pages = [
+    const HomePageView(),
+    const FavoritesView(),
+    SearchView()
+  ];
 }

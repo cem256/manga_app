@@ -1,7 +1,21 @@
 import 'package:hive/hive.dart';
 import 'package:manga_app/core/constants/cache_contants.dart';
-import 'package:manga_app/interface/cache_manager_interface.dart';
 import 'package:manga_app/model/manga_response_model.dart';
+
+import '../core/utils/logger.dart';
+
+abstract class ICacheManager<T> {
+  final String key;
+
+  ICacheManager(this.key);
+
+  Future<void> init();
+  void registerAdapters();
+  Future<void> clear();
+  List<T> getValues();
+  Future<void> putItem(T item);
+  Future<void> deleteItem(dynamic key);
+}
 
 class CacheManager extends ICacheManager<Data> {
   CacheManager(super.key);
@@ -45,10 +59,10 @@ class CacheManager extends ICacheManager<Data> {
   Future<void> putItem(Data item) async {
     if (_box?.containsKey(item.malId) ?? false) {
       await deleteItem(item.malId);
-      print("removed");
+      Log.instance.i("${item.title ?? ''} removed from favorites list");
     } else {
       await _box?.put(item.malId, item);
-      print("added");
+      Log.instance.i("${item.title ?? ''} added to favorites list");
     }
   }
 }

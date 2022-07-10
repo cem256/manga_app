@@ -1,13 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/material.dart';
-import 'package:manga_app/core/extension/context_extension.dart';
-import '../../core/constants/view_constants.dart';
-import '../../core/router/app_router.dart';
-import '../../model/manga_response_model.dart';
-import '../detail/manga_detail_view.dart';
+part of 'manga_gridview_widget.dart';
 
-class MangaCardWidget extends StatelessWidget {
-  const MangaCardWidget(this.mangaList, this.index, {Key? key})
+class _MangaCardWidget extends StatelessWidget {
+  const _MangaCardWidget(this.mangaList, this.index, {Key? key})
       : super(key: key);
 
   final List<Data> mangaList;
@@ -50,10 +44,7 @@ class MangaCardWidget extends StatelessWidget {
         child: Text(
           mangaList[index].title ?? '',
           textAlign: TextAlign.center,
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge
-              ?.copyWith(color: Colors.white),
+          style: Theme.of(context).textTheme.bodyLarge,
           maxLines: 2,
         ),
       ),

@@ -3,21 +3,17 @@ import 'package:manga_app/provider/favorites_provider.dart';
 import 'package:provider/provider.dart';
 import '../widgets/manga_gridview_widget.dart';
 
-class FavoritesView extends StatefulWidget {
+class FavoritesView extends StatelessWidget {
   const FavoritesView({Key? key}) : super(key: key);
 
-  @override
-  State<FavoritesView> createState() => _FavoritesViewState();
-}
-
-class _FavoritesViewState extends State<FavoritesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: const Text("Favorites")),
-        body: context.watch<FavoritesProvider>().getValues().isNotEmpty
+        body: context.watch<FavoritesProvider>().getFavoritesList().isNotEmpty
             ? MangaGridViewWidget(
-                mangaList: context.watch<FavoritesProvider>().getValues())
+                mangaList:
+                    context.watch<FavoritesProvider>().getFavoritesList())
             : const Center(
                 child: Text("You don't have any favorites."),
               ));

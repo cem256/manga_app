@@ -1,42 +1,26 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:manga_app/cache/cache_manager.dart';
-import 'package:manga_app/core/constants/cache_contants.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
-import 'package:manga_app/interface/cache_manager_interface.dart';
 import 'package:provider/provider.dart';
-
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
 import '../../provider/favorites_provider.dart';
 
-class MangaDetailView extends StatefulWidget {
+class MangaDetailView extends StatelessWidget {
   final Data mangaDetails;
   const MangaDetailView({Key? key, required this.mangaDetails})
       : super(key: key);
 
-  @override
-  State<MangaDetailView> createState() => _MangaDetailViewState();
-}
+//   @override
+//   State<MangaDetailView> createState() => _MangaDetailViewState();
+// }
 
-class _MangaDetailViewState extends State<MangaDetailView> {
-  ICacheManager<Data> cacheManager =
-      CacheManager(HiveConstants.favoritesBoxName);
-
-  @override
-  void initState() {
-    initCache();
-    super.initState();
-  }
-
-  Future<void> initCache() async {
-    await cacheManager.init();
-  }
+// class _MangaDetailViewState extends State<MangaDetailView> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _appbar(),
+      appBar: _appbar(context),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,21 +51,18 @@ class _MangaDetailViewState extends State<MangaDetailView> {
     );
   }
 
-  AppBar _appbar() {
+  AppBar _appbar(BuildContext context) {
     return AppBar(
       title: const Text("Details"),
       actions: [
         IconButton(
             onPressed: () async {
-              context.read<FavoritesProvider>().updateList();
-              await cacheManager.putItem(widget.mangaDetails);
+              await context.read<FavoritesProvider>().putItem(mangaDetails);
             },
             icon: const Icon(Icons.favorite),
             color: context
                     .watch<FavoritesProvider>()
-                    .getValues()
-                    .map((e) => e.malId)
-                    .contains(widget.mangaDetails.malId)
+                    .isFavorite(mangaDetails.malId)
                 ? Colors.red
                 : null)
       ],
@@ -102,7 +83,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
         },
         blendMode: BlendMode.dstIn,
         child: CachedNetworkImage(
-          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
+          imageUrl: "${mangaDetails.images?.jpg?.imageUrl}",
           errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fitWidth,
         ),
@@ -116,7 +97,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
       child: SizedBox(
         width: context.dynamicWidth(0.3),
         child: CachedNetworkImage(
-          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
+          imageUrl: "${mangaDetails.images?.jpg?.imageUrl}",
           errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fill,
         ),
@@ -126,7 +107,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
 
   Text _mangaTitle(BuildContext context) {
     return Text(
-      widget.mangaDetails.title ?? "",
+      mangaDetails.title ?? "",
       style: Theme.of(context)
           .textTheme
           .titleLarge!
@@ -137,7 +118,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
 
   Text _mangaSynopsis(BuildContext context) {
     return Text(
-      widget.mangaDetails.synopsis ?? "",
+      mangaDetails.synopsis ?? "",
       style: Theme.of(context).textTheme.titleMedium,
     );
   }
