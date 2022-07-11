@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
-import 'package:provider/provider.dart';
+import 'package:manga_app/cubit/favorites/favorites_cubit.dart';
+
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
-import '../../provider/favorites_provider.dart';
 
 class MangaDetailView extends StatelessWidget {
   final Data mangaDetails;
@@ -51,12 +52,16 @@ class MangaDetailView extends StatelessWidget {
       actions: [
         IconButton(
             onPressed: () async {
-              await context.read<FavoritesProvider>().putItem(mangaDetails);
+              await context
+                  .read<FavoritesCubit>()
+                  .updateFavorites(mangaDetails);
             },
             icon: const Icon(Icons.favorite),
             color: context
-                    .watch<FavoritesProvider>()
-                    .isFavorite(mangaDetails.malId)
+                    .watch<FavoritesCubit>()
+                    .state
+                    .map((e) => e.malId)
+                    .contains(mangaDetails.malId)
                 ? Colors.red
                 : null)
       ],

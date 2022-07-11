@@ -47,6 +47,7 @@ class SearchView extends StatelessWidget {
   AppBar _appbar(BuildContext context) {
     return AppBar(
       title: TextField(
+        textCapitalization: TextCapitalization.words,
         controller: userInput,
         onChanged: (userInput) {
           if (userInput.length > 2) {
