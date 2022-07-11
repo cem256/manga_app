@@ -32,6 +32,7 @@ class MangaApp extends StatelessWidget {
         theme: ThemeData(
           colorScheme: const ColorScheme.dark(
               primary: Colors.white, secondary: Colors.white),
+          appBarTheme: const AppBarTheme(centerTitle: true),
         ),
         debugShowCheckedModeBanner: false,
         home: const BottomNavbarView(),

@@ -16,30 +16,7 @@ class SearchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: TextField(
-          controller: userInput,
-          onChanged: (userInput) {
-            if (userInput.length > 2) {
-              EasyDebounce.debounce(
-                  "searchManga", const Duration(milliseconds: 1000), () {
-                context.read<SearchMangaCubit>().searchManga(userInput);
-              });
-            }
-          },
-          autofocus: true,
-          decoration: InputDecoration(
-            border: InputBorder.none,
-            hintText: "Search...",
-            prefixIcon: const Icon(Icons.search),
-            suffixIcon: IconButton(
-                onPressed: () {
-                  userInput.text = "";
-                },
-                icon: const Icon(Icons.clear)),
-          ),
-        ),
-      ),
+      appBar: _appbar(context),
       body: BlocConsumer<SearchMangaCubit, SearchMangaState>(
         listener: (context, state) {
           if (state is SearchMangaLoadedState &&
@@ -63,6 +40,33 @@ class SearchView extends StatelessWidget {
             return const Center(child: Text("Something went wrong"));
           }
         },
+      ),
+    );
+  }
+
+  AppBar _appbar(BuildContext context) {
+    return AppBar(
+      title: TextField(
+        controller: userInput,
+        onChanged: (userInput) {
+          if (userInput.length > 2) {
+            EasyDebounce.debounce(
+                "searchManga", const Duration(milliseconds: 1000), () {
+              context.read<SearchMangaCubit>().searchManga(userInput);
+            });
+          }
+        },
+        autofocus: true,
+        decoration: InputDecoration(
+          border: InputBorder.none,
+          hintText: "Search...",
+          prefixIcon: const Icon(Icons.search),
+          suffixIcon: IconButton(
+              onPressed: () {
+                userInput.text = "";
+              },
+              icon: const Icon(Icons.clear)),
+        ),
       ),
     );
   }

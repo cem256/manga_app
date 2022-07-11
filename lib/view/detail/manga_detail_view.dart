@@ -11,12 +11,6 @@ class MangaDetailView extends StatelessWidget {
   const MangaDetailView({Key? key, required this.mangaDetails})
       : super(key: key);
 
-//   @override
-//   State<MangaDetailView> createState() => _MangaDetailViewState();
-// }
-
-// class _MangaDetailViewState extends State<MangaDetailView> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
