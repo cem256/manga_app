@@ -19,9 +19,7 @@ class SearchView extends StatelessWidget {
       appBar: _appbar(context),
       body: BlocConsumer<SearchMangaCubit, SearchMangaState>(
         listener: (context, state) {
-          if (state is SearchMangaLoadedState &&
-              state.model != null &&
-              state.model?.data != null) {
+          if (state is SearchMangaLoadedState && state.model != null && state.model?.data != null) {
             searchMangaList.clear();
             searchMangaList.addAll(state.model!.data ?? []);
             Log.instance.d(searchMangaList);
@@ -51,8 +49,7 @@ class SearchView extends StatelessWidget {
         controller: userInput,
         onChanged: (userInput) {
           if (userInput.length > 2) {
-            EasyDebounce.debounce(
-                "searchManga", const Duration(milliseconds: 1000), () {
+            EasyDebounce.debounce("searchManga", const Duration(milliseconds: 1000), () {
               context.read<SearchMangaCubit>().searchManga(userInput);
             });
           }

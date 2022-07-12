@@ -19,8 +19,7 @@ class _BottomNavbarViewState extends State<BottomNavbarView> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Favorites'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Favorites'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
         currentIndex: _currentIndex,
@@ -32,9 +31,5 @@ class _BottomNavbarViewState extends State<BottomNavbarView> {
     );
   }
 
-  static final pages = [
-    const HomePageView(),
-    const FavoritesView(),
-    SearchView()
-  ];
+  static final pages = [const HomePageView(), const FavoritesView(), SearchView()];
 }

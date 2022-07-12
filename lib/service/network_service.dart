@@ -4,10 +4,7 @@ import 'package:manga_app/interface/search_manga_interface.dart';
 import 'package:manga_app/model/manga_response_model.dart';
 import '../interface/top_manga_interface.dart';
 
-class NetworkManager
-    implements
-        ITopManga<MangaResponseModel?>,
-        ISearchManga<MangaResponseModel?> {
+class NetworkManager implements ITopManga<MangaResponseModel?>, ISearchManga<MangaResponseModel?> {
   late Dio _dio;
 
   static NetworkManager? _instace;
@@ -40,8 +37,7 @@ class NetworkManager
   @override
   Future<MangaResponseModel?> searchManga(String query) async {
     try {
-      var response =
-          await _dio.get("manga?q=$query&order_by=members&sort=desc");
+      var response = await _dio.get("manga?q=$query&order_by=members&sort=desc");
       final res = MangaResponseModel?.fromJson(response.data);
 
       Log.instance.d(res);

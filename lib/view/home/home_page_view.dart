@@ -42,9 +42,7 @@ class _HomePageViewState extends State<HomePageView> {
       appBar: _appbar(),
       body: BlocConsumer<TopMangaCubit, TopMangaState>(
         listener: (context, state) {
-          if (state is TopMangaLoadedState &&
-              state.model != null &&
-              state.model?.data != null) {
+          if (state is TopMangaLoadedState && state.model != null && state.model?.data != null) {
             topMangaList.addAll(state.model!.data ?? []);
           }
         },
@@ -52,8 +50,7 @@ class _HomePageViewState extends State<HomePageView> {
           if (state is TopMangaLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TopMangaLoadedState) {
-            return MangaGridViewWidget(
-                mangaList: topMangaList, controller: _scrollController);
+            return MangaGridViewWidget(mangaList: topMangaList, controller: _scrollController);
           } else {
             return const Center(
               child: Text("Something went wrong"),

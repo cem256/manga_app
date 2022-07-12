@@ -16,10 +16,7 @@ extension PaddingExtension on BuildContext {
   EdgeInsets get paddingAllDefault => EdgeInsets.all(mediumValue);
   EdgeInsets get paddingAllHigh => EdgeInsets.all(highValue);
 
-  EdgeInsets get paddingHorizontalLow =>
-      EdgeInsets.symmetric(horizontal: lowValue);
-  EdgeInsets get paddingHorizontalDefault =>
-      EdgeInsets.symmetric(horizontal: mediumValue);
-  EdgeInsets get paddingHorizontalHigh =>
-      EdgeInsets.symmetric(horizontal: highValue);
+  EdgeInsets get paddingHorizontalLow => EdgeInsets.symmetric(horizontal: lowValue);
+  EdgeInsets get paddingHorizontalDefault => EdgeInsets.symmetric(horizontal: mediumValue);
+  EdgeInsets get paddingHorizontalHigh => EdgeInsets.symmetric(horizontal: highValue);
 }

@@ -1,8 +1,7 @@
 part of 'manga_gridview_widget.dart';
 
 class _MangaCardWidget extends StatelessWidget {
-  const _MangaCardWidget(this.mangaList, this.index, {Key? key})
-      : super(key: key);
+  const _MangaCardWidget(this.mangaList, this.index, {Key? key}) : super(key: key);
 
   final List<Data> mangaList;
   final int index;
@@ -11,14 +10,11 @@ class _MangaCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        AppRouter()
-            .push(context, MangaDetailView(mangaDetails: mangaList[index]));
+        AppRouter().push(context, MangaDetailView(mangaDetails: mangaList[index]));
       },
       child: ClipRRect(
         borderRadius: ViewConstants.borderCircular,
-        child: Stack(
-            alignment: Alignment.bottomCenter,
-            children: [_stackImage(), _stackText(context)]),
+        child: Stack(alignment: Alignment.bottomCenter, children: [_stackImage(), _stackText(context)]),
       ),
     );
   }

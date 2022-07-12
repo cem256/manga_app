@@ -6,8 +6,7 @@ import '../../model/manga_response_model.dart';
 class FavoritesCubit extends Cubit<List<Data>> {
   FavoritesCubit() : super([]);
 
-  final CacheManager _cacheManager =
-      CacheManager(HiveConstants.favoritesBoxName);
+  final CacheManager _cacheManager = CacheManager(HiveConstants.favoritesBoxName);
 
   Future<void> getInitialFavorites() async {
     await _cacheManager.init();

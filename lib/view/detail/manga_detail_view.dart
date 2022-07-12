@@ -9,8 +9,7 @@ import '../../model/manga_response_model.dart';
 
 class MangaDetailView extends StatefulWidget {
   final Data mangaDetails;
-  const MangaDetailView({Key? key, required this.mangaDetails})
-      : super(key: key);
+  const MangaDetailView({Key? key, required this.mangaDetails}) : super(key: key);
 
   @override
   State<MangaDetailView> createState() => _MangaDetailViewState();
@@ -63,16 +62,10 @@ class _MangaDetailViewState extends State<MangaDetailView> {
       actions: [
         IconButton(
             onPressed: () async {
-              await context
-                  .read<FavoritesCubit>()
-                  .updateFavorites(widget.mangaDetails);
+              await context.read<FavoritesCubit>().updateFavorites(widget.mangaDetails);
             },
             icon: const Icon(Icons.favorite),
-            color: context
-                    .watch<FavoritesCubit>()
-                    .state
-                    .map((e) => e.malId)
-                    .contains(widget.mangaDetails.malId)
+            color: context.watch<FavoritesCubit>().state.map((e) => e.malId).contains(widget.mangaDetails.malId)
                 ? Colors.red
                 : null)
       ],
@@ -118,10 +111,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
   Text _mangaTitle(BuildContext context) {
     return Text(
       widget.mangaDetails.title ?? "",
-      style: Theme.of(context)
-          .textTheme
-          .titleLarge!
-          .copyWith(fontWeight: FontWeight.bold),
+      style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold),
       maxLines: 2,
     );
   }

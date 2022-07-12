@@ -23,8 +23,7 @@ class _FavoritesViewState extends State<FavoritesView> {
     return Scaffold(
         appBar: AppBar(title: const Text("Favorites")),
         body: context.watch<FavoritesCubit>().state.isNotEmpty
-            ? MangaGridViewWidget(
-                mangaList: context.watch<FavoritesCubit>().state)
+            ? MangaGridViewWidget(mangaList: context.watch<FavoritesCubit>().state)
             : const Center(
                 child: Text("You don't have any favorites."),
               ));

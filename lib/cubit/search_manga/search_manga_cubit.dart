@@ -13,9 +13,7 @@ class SearchMangaCubit extends Cubit<SearchMangaState> {
     emit(SearchMangaLoadingState());
     final response = await _controller.searchManga(query);
     if (response != null) {
-      response.data!.isEmpty
-          ? emit(SearchMangaEmptyState())
-          : emit(SearchMangaLoadedState(response));
+      response.data!.isEmpty ? emit(SearchMangaEmptyState()) : emit(SearchMangaLoadedState(response));
     } else {
       emit(SearchMangaErrorState());
     }

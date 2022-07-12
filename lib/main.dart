@@ -11,8 +11,7 @@ void main() async {
   await Hive.initFlutter();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-  SystemChrome.setSystemUIOverlayStyle(
-      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   runApp(const MangaApp());
 }
 
@@ -29,8 +28,7 @@ class MangaApp extends StatelessWidget {
       ],
       child: MaterialApp(
         theme: ThemeData(
-          colorScheme: const ColorScheme.dark(
-              primary: Colors.white, secondary: Colors.white),
+          colorScheme: const ColorScheme.dark(primary: Colors.white, secondary: Colors.white),
           appBarTheme: const AppBarTheme(centerTitle: true),
         ),
         debugShowCheckedModeBanner: false,
