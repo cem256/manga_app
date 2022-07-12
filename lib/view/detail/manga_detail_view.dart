@@ -7,10 +7,21 @@ import 'package:manga_app/cubit/favorites/favorites_cubit.dart';
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
 
-class MangaDetailView extends StatelessWidget {
+class MangaDetailView extends StatefulWidget {
   final Data mangaDetails;
   const MangaDetailView({Key? key, required this.mangaDetails})
       : super(key: key);
+
+  @override
+  State<MangaDetailView> createState() => _MangaDetailViewState();
+}
+
+class _MangaDetailViewState extends State<MangaDetailView> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<FavoritesCubit>().getInitialFavorites();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +65,14 @@ class MangaDetailView extends StatelessWidget {
             onPressed: () async {
               await context
                   .read<FavoritesCubit>()
-                  .updateFavorites(mangaDetails);
+                  .updateFavorites(widget.mangaDetails);
             },
             icon: const Icon(Icons.favorite),
             color: context
                     .watch<FavoritesCubit>()
                     .state
                     .map((e) => e.malId)
-                    .contains(mangaDetails.malId)
+                    .contains(widget.mangaDetails.malId)
                 ? Colors.red
                 : null)
       ],
@@ -82,7 +93,7 @@ class MangaDetailView extends StatelessWidget {
         },
         blendMode: BlendMode.dstIn,
         child: CachedNetworkImage(
-          imageUrl: "${mangaDetails.images?.jpg?.imageUrl}",
+          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
           errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fitWidth,
         ),
@@ -96,7 +107,7 @@ class MangaDetailView extends StatelessWidget {
       child: SizedBox(
         width: context.dynamicWidth(0.3),
         child: CachedNetworkImage(
-          imageUrl: "${mangaDetails.images?.jpg?.imageUrl}",
+          imageUrl: "${widget.mangaDetails.images?.jpg?.imageUrl}",
           errorWidget: (context, url, error) => const Icon(Icons.error),
           fit: BoxFit.fill,
         ),
@@ -106,7 +117,7 @@ class MangaDetailView extends StatelessWidget {
 
   Text _mangaTitle(BuildContext context) {
     return Text(
-      mangaDetails.title ?? "",
+      widget.mangaDetails.title ?? "",
       style: Theme.of(context)
           .textTheme
           .titleLarge!
@@ -117,7 +128,7 @@ class MangaDetailView extends StatelessWidget {
 
   Text _mangaSynopsis(BuildContext context) {
     return Text(
-      mangaDetails.synopsis ?? "",
+      widget.mangaDetails.synopsis ?? "",
       style: Theme.of(context).textTheme.titleMedium,
     );
   }

@@ -1,3 +1,3 @@
 abstract class ITopManga<T> {
-  Future<T?> fetchTopManga();
+  Future<T?> fetchTopManga(int page);
 }

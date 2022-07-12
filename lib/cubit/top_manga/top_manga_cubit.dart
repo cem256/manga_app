@@ -7,11 +7,15 @@ part 'top_manga_state.dart';
 
 class TopMangaCubit extends Cubit<TopMangaState> {
   TopMangaCubit() : super(TopMangaInitialState());
+
   final TopMangaController _controller = TopMangaController();
 
-  Future<void> fetchTopManga() async {
-    emit(TopMangaLoadingState());
-    final response = await _controller.fetchTopManga();
+  Future<void> fetchTopManga(int page) async {
+    if (page == 1) {
+      emit(TopMangaLoadingState());
+    }
+    final response = await _controller.fetchTopManga(page);
+
     if (response != null) {
       emit(TopMangaLoadedState(response));
     } else {

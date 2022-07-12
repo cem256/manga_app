@@ -11,7 +11,7 @@ class SearchView extends StatelessWidget {
   SearchView({Key? key}) : super(key: key);
 
   final TextEditingController userInput = TextEditingController();
-  final List<Data> searchMangaList = <Data>[];
+  final List<Data> searchMangaList = [];
 
   @override
   Widget build(BuildContext context) {

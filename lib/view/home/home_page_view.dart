@@ -14,13 +14,27 @@ class HomePageView extends StatefulWidget {
 }
 
 class _HomePageViewState extends State<HomePageView> {
+  int page = 1;
+  List<Data> topMangaList = [];
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
     super.initState();
-    context.read<TopMangaCubit>().fetchTopManga();
+
+    _fetchData();
+    _scrollController.addListener(() async {
+      if (_scrollController.position.atEdge) {
+        if (_scrollController.position.pixels != 0) {
+          await _fetchData(page += 1);
+        }
+      }
+    });
   }
 
-  List<Data> topMangaList = <Data>[];
+  Future<void> _fetchData([int page = 1]) async {
+    await context.read<TopMangaCubit>().fetchTopManga(page);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +52,8 @@ class _HomePageViewState extends State<HomePageView> {
           if (state is TopMangaLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is TopMangaLoadedState) {
-            return MangaGridViewWidget(mangaList: topMangaList);
+            return MangaGridViewWidget(
+                mangaList: topMangaList, controller: _scrollController);
           } else {
             return const Center(
               child: Text("Something went wrong"),

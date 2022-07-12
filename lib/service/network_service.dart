@@ -21,11 +21,12 @@ class NetworkManager
   }
 
   @override
-  Future<MangaResponseModel?> fetchTopManga() async {
+  Future<MangaResponseModel?> fetchTopManga(int page) async {
     try {
-      const int limit = 96;
+      const int limit = 500;
+      Log.instance.d("Current page is $page");
 
-      var response = await _dio.get("top/manga?limit=$limit");
+      var response = await _dio.get("top/manga?limit=$limit&page=$page");
       final res = MangaResponseModel?.fromJson(response.data);
 
       Log.instance.d(res);

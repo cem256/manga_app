@@ -6,7 +6,7 @@ class TopMangaController extends ITopManga<MangaResponseModel?> {
   final NetworkManager _service = NetworkManager.instance;
 
   @override
-  Future<MangaResponseModel?> fetchTopManga() {
-    return _service.fetchTopManga();
+  Future<MangaResponseModel?> fetchTopManga(int page) {
+    return _service.fetchTopManga(page);
   }
 }

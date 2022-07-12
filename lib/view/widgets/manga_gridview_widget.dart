@@ -12,13 +12,16 @@ class MangaGridViewWidget extends StatelessWidget {
   const MangaGridViewWidget({
     Key? key,
     required this.mangaList,
+    this.controller,
   }) : super(key: key);
 
   final List<Data> mangaList;
+  final ScrollController? controller;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+        controller: controller,
         padding: context.paddingAllDefault,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             mainAxisSpacing: context.mediumValue,
