@@ -1,16 +1,41 @@
-# manga_app
+<div align="center">
+  <h1 align="center">Manga App</h1>
+  <p align="center">
+   You can list manga, view manga details, add manga to your favorites, and search any manga using the Manga App.
+  </p>
+</div>
+ 
+## Built With
 
-A new Flutter project.
+- [Flutter](https://flutter.dev/)
+- [Dart](https://dart.dev/)
+- [Jikan API v4](https://docs.api.jikan.moe/)
 
-## Getting Started
+## Preview
 
-This project is a starting point for a Flutter application.
+<p align='center'>
+    <img src="screenshot/home_screen.png" width="24%"/>
+    <img src="screenshot/details_screen.png" width="24%"/>
+    <img src="screenshot/favorites_screen.png" width="24%"/>
+    <img src="screenshot/search_screen.png" width="24%"/>
+</p>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Architecture
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+This app is developed with [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) pattern.
+
+## Packages
+
+- State management
+  - [BLoC](https://pub.dev/packages/flutter_bloc)
+- Cache
+  - [Hive](https://pub.dev/packages/hive)
+  - [Cached Network Image](https://pub.dev/packages/cached_network_image)
+- Network
+  - [dio](https://pub.dev/packages/dio)
+
+
+
+
+
