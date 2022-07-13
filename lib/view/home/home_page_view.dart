@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/cubit/top_manga/top_manga_cubit.dart';
-
+import 'package:manga_app/view/widgets/custom_error_widget.dart';
 import 'package:manga_app/view/widgets/manga_gridview_widget.dart';
-
 import '../../model/manga_response_model.dart';
 
 class HomePageView extends StatefulWidget {
@@ -52,16 +51,12 @@ class _HomePageViewState extends State<HomePageView> {
           } else if (state is TopMangaLoadedState) {
             return MangaGridViewWidget(mangaList: topMangaList, controller: _scrollController);
           } else {
-            return const Center(
-              child: Text("Something went wrong"),
-            );
+            return const CustomErrorWidget();
           }
         },
       ),
     );
   }
 
-  AppBar _appbar() => AppBar(
-        title: const Text("Home"),
-      );
+  AppBar _appbar() => AppBar(title: const Text("Home"));
 }

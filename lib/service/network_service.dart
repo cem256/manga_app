@@ -6,6 +6,7 @@ import '../interface/top_manga_interface.dart';
 
 class NetworkManager implements ITopManga<MangaResponseModel?>, ISearchManga<MangaResponseModel?> {
   late Dio _dio;
+  late String _baseUrl;
 
   static NetworkManager? _instace;
   static NetworkManager get instance {
@@ -14,7 +15,8 @@ class NetworkManager implements ITopManga<MangaResponseModel?>, ISearchManga<Man
   }
 
   NetworkManager._init() {
-    _dio = Dio(BaseOptions(baseUrl: "https://api.jikan.moe/v4/"));
+    _baseUrl = "https://api.jikan.moe/v4/";
+    _dio = Dio(BaseOptions(baseUrl: _baseUrl));
   }
 
   @override

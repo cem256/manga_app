@@ -1,5 +1,4 @@
 import 'package:manga_app/interface/search_manga_interface.dart';
-
 import '../model/manga_response_model.dart';
 import '../service/network_service.dart';
 

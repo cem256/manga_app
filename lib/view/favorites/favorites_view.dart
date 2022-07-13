@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/cubit/favorites/favorites_cubit.dart';
-
+import 'package:manga_app/view/widgets/custom_error_widget.dart';
 import '../widgets/manga_gridview_widget.dart';
 
 class FavoritesView extends StatefulWidget {
@@ -24,8 +24,8 @@ class _FavoritesViewState extends State<FavoritesView> {
         appBar: AppBar(title: const Text("Favorites")),
         body: context.watch<FavoritesCubit>().state.isNotEmpty
             ? MangaGridViewWidget(mangaList: context.watch<FavoritesCubit>().state)
-            : const Center(
-                child: Text("You don't have any favorites."),
+            : const CustomErrorWidget(
+                message: "You don't have any favorites",
               ));
   }
 }

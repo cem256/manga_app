@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:manga_app/core/extension/context_extension.dart';
 import 'package:manga_app/cubit/favorites/favorites_cubit.dart';
-
 import '../../core/constants/view_constants.dart';
 import '../../model/manga_response_model.dart';
 

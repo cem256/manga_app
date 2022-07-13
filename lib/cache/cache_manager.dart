@@ -1,7 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:manga_app/core/constants/cache_contants.dart';
 import 'package:manga_app/model/manga_response_model.dart';
-
 import '../core/utils/logger.dart';
 
 abstract class ICacheManager<T> {
