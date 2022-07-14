@@ -7,6 +7,7 @@ import 'package:manga_app/core/theme/app_theme.dart';
 import 'package:manga_app/view/bottom_navbar_view.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
