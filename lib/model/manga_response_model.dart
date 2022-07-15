@@ -1,8 +1,10 @@
 import 'package:hive/hive.dart';
+import 'package:json_annotation/json_annotation.dart';
 import '../core/constants/cache_contants.dart';
 
 part 'manga_response_model.g.dart';
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: HiveConstants.mangaTypeId)
 class MangaResponseModel {
   @HiveField(0)
@@ -10,28 +12,15 @@ class MangaResponseModel {
 
   MangaResponseModel({this.data});
 
-  MangaResponseModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <Data>[];
-      json['data'].forEach((v) {
-        data!.add(Data.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+  factory MangaResponseModel.fromJson(Map<String, dynamic> data) => _$MangaResponseModelFromJson(data);
+  Map<String, dynamic> toJson() => _$MangaResponseModelToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: HiveConstants.dataTypeId)
 class Data {
   @HiveField(0)
+  @JsonKey(name: "mal_id")
   int? malId;
   @HiveField(1)
   String? url;
@@ -40,12 +29,8 @@ class Data {
   @HiveField(3)
   String? title;
   @HiveField(4)
-  String? titleEnglish;
-  @HiveField(5)
-  String? titleJapanese;
-  @HiveField(6)
   String? synopsis;
-  @HiveField(7)
+  @HiveField(5)
   String? background;
 
   Data({
@@ -53,40 +38,15 @@ class Data {
     this.url,
     this.images,
     this.title,
-    this.titleEnglish,
-    this.titleJapanese,
     this.synopsis,
     this.background,
   });
 
-  Data.fromJson(Map<String, dynamic> json) {
-    malId = json['mal_id'];
-    url = json['url'];
-    images = json['images'] != null ? Images.fromJson(json['images']) : null;
-    title = json['title'];
-    titleEnglish = json['title_english'];
-    titleJapanese = json['title_japanese'];
-    synopsis = json['synopsis'];
-    background = json['background'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['mal_id'] = malId;
-    data['url'] = url;
-    if (images != null) {
-      data['images'] = images!.toJson();
-    }
-    data['title'] = title;
-    data['title_english'] = titleEnglish;
-    data['title_japanese'] = titleJapanese;
-    data['synopsis'] = synopsis;
-    data['background'] = background;
-
-    return data;
-  }
+  factory Data.fromJson(Map<String, dynamic> data) => _$DataFromJson(data);
+  Map<String, dynamic> toJson() => _$DataToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: HiveConstants.imagesTypeId)
 class Images {
   @HiveField(0)
@@ -94,37 +54,21 @@ class Images {
 
   Images({this.jpg});
 
-  Images.fromJson(Map<String, dynamic> json) {
-    jpg = json['jpg'] != null ? Jpg.fromJson(json['jpg']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    if (jpg != null) {
-      data['jpg'] = jpg!.toJson();
-    }
-
-    return data;
-  }
+  factory Images.fromJson(Map<String, dynamic> data) => _$ImagesFromJson(data);
+  Map<String, dynamic> toJson() => _$ImagesToJson(this);
 }
 
+@JsonSerializable(explicitToJson: true)
 @HiveType(typeId: HiveConstants.jpgTypeId)
 class Jpg {
   @HiveField(0)
+  @JsonKey(name: "image_url")
   String? imageUrl;
 
   Jpg({
     this.imageUrl,
   });
 
-  Jpg.fromJson(Map<String, dynamic> json) {
-    imageUrl = json['image_url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['image_url'] = imageUrl;
-
-    return data;
-  }
+  factory Jpg.fromJson(Map<String, dynamic> data) => _$JpgFromJson(data);
+  Map<String, dynamic> toJson() => _$JpgToJson(this);
 }

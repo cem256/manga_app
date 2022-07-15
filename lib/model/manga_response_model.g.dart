@@ -55,17 +55,15 @@ class DataAdapter extends TypeAdapter<Data> {
       url: fields[1] as String?,
       images: fields[2] as Images?,
       title: fields[3] as String?,
-      titleEnglish: fields[4] as String?,
-      titleJapanese: fields[5] as String?,
-      synopsis: fields[6] as String?,
-      background: fields[7] as String?,
+      synopsis: fields[4] as String?,
+      background: fields[5] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, Data obj) {
     writer
-      ..writeByte(8)
+      ..writeByte(6)
       ..writeByte(0)
       ..write(obj.malId)
       ..writeByte(1)
@@ -75,12 +73,8 @@ class DataAdapter extends TypeAdapter<Data> {
       ..writeByte(3)
       ..write(obj.title)
       ..writeByte(4)
-      ..write(obj.titleEnglish)
-      ..writeByte(5)
-      ..write(obj.titleJapanese)
-      ..writeByte(6)
       ..write(obj.synopsis)
-      ..writeByte(7)
+      ..writeByte(5)
       ..write(obj.background);
   }
 
@@ -162,3 +156,57 @@ class JpgAdapter extends TypeAdapter<Jpg> {
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
+
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+MangaResponseModel _$MangaResponseModelFromJson(Map<String, dynamic> json) =>
+    MangaResponseModel(
+      data: (json['data'] as List<dynamic>?)
+          ?.map((e) => Data.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$MangaResponseModelToJson(MangaResponseModel instance) =>
+    <String, dynamic>{
+      'data': instance.data?.map((e) => e.toJson()).toList(),
+    };
+
+Data _$DataFromJson(Map<String, dynamic> json) => Data(
+      malId: json['mal_id'] as int?,
+      url: json['url'] as String?,
+      images: json['images'] == null
+          ? null
+          : Images.fromJson(json['images'] as Map<String, dynamic>),
+      title: json['title'] as String?,
+      synopsis: json['synopsis'] as String?,
+      background: json['background'] as String?,
+    );
+
+Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
+      'mal_id': instance.malId,
+      'url': instance.url,
+      'images': instance.images?.toJson(),
+      'title': instance.title,
+      'synopsis': instance.synopsis,
+      'background': instance.background,
+    };
+
+Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
+      jpg: json['jpg'] == null
+          ? null
+          : Jpg.fromJson(json['jpg'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
+      'jpg': instance.jpg?.toJson(),
+    };
+
+Jpg _$JpgFromJson(Map<String, dynamic> json) => Jpg(
+      imageUrl: json['image_url'] as String?,
+    );
+
+Map<String, dynamic> _$JpgToJson(Jpg instance) => <String, dynamic>{
+      'image_url': instance.imageUrl,
+    };
