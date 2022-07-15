@@ -1,4 +1,4 @@
-import 'package:manga_app/service/network_service.dart';
+import '../service/network_service.dart';
 import '../interface/top_manga_interface.dart';
 import '../model/manga_response_model.dart';
 

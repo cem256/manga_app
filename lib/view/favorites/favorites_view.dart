@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:manga_app/cubit/favorites/favorites_cubit.dart';
-import 'package:manga_app/view/widgets/custom_error_widget.dart';
+import '../../cubit/favorites/favorites_cubit.dart';
+import '../widgets/custom_error_widget.dart';
 import '../widgets/manga_gridview_widget.dart';
 
 class FavoritesView extends StatefulWidget {

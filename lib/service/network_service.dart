@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:manga_app/core/utils/logger.dart';
-import 'package:manga_app/interface/search_manga_interface.dart';
-import 'package:manga_app/model/manga_response_model.dart';
+import '../core/utils/logger.dart';
+import '../interface/search_manga_interface.dart';
+import '../model/manga_response_model.dart';
 import '../interface/top_manga_interface.dart';
 
 class NetworkManager implements ITopManga<MangaResponseModel?>, ISearchManga<MangaResponseModel?> {
