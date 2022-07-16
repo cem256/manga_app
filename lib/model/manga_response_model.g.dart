@@ -168,11 +168,6 @@ MangaResponseModel _$MangaResponseModelFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$MangaResponseModelToJson(MangaResponseModel instance) =>
-    <String, dynamic>{
-      'data': instance.data?.map((e) => e.toJson()).toList(),
-    };
-
 Data _$DataFromJson(Map<String, dynamic> json) => Data(
       malId: json['mal_id'] as int?,
       url: json['url'] as String?,
@@ -184,29 +179,12 @@ Data _$DataFromJson(Map<String, dynamic> json) => Data(
       background: json['background'] as String?,
     );
 
-Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
-      'mal_id': instance.malId,
-      'url': instance.url,
-      'images': instance.images?.toJson(),
-      'title': instance.title,
-      'synopsis': instance.synopsis,
-      'background': instance.background,
-    };
-
 Images _$ImagesFromJson(Map<String, dynamic> json) => Images(
       jpg: json['jpg'] == null
           ? null
           : Jpg.fromJson(json['jpg'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ImagesToJson(Images instance) => <String, dynamic>{
-      'jpg': instance.jpg?.toJson(),
-    };
-
 Jpg _$JpgFromJson(Map<String, dynamic> json) => Jpg(
       imageUrl: json['image_url'] as String?,
     );
-
-Map<String, dynamic> _$JpgToJson(Jpg instance) => <String, dynamic>{
-      'image_url': instance.imageUrl,
-    };

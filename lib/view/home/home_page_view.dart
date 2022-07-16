@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../cubit/top_manga/top_manga_cubit.dart';
+import '../../model/manga_response_model.dart';
 import '../widgets/custom_error_widget.dart';
 import '../widgets/manga_gridview_widget.dart';
-import '../../model/manga_response_model.dart';
 
 class HomePageView extends StatefulWidget {
   const HomePageView({Key? key}) : super(key: key);

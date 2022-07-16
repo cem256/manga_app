@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../controller/search_manga_controller.dart';
 import '../../model/manga_response_model.dart';
 
