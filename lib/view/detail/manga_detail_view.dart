@@ -18,7 +18,7 @@ class _MangaDetailViewState extends State<MangaDetailView> {
   @override
   void initState() {
     super.initState();
-    context.read<FavoritesCubit>().getInitialFavorites();
+    context.read<FavoritesCubit>().getFavorites(malId: widget.mangaDetails.malId);
   }
 
   @override
@@ -59,14 +59,16 @@ class _MangaDetailViewState extends State<MangaDetailView> {
     return AppBar(
       title: const Text("Details"),
       actions: [
-        IconButton(
-            onPressed: () async {
-              await context.read<FavoritesCubit>().updateFavorites(widget.mangaDetails);
-            },
-            icon: const Icon(Icons.favorite),
-            color: context.watch<FavoritesCubit>().state.map((e) => e.malId).contains(widget.mangaDetails.malId)
-                ? Colors.red
-                : null)
+        BlocBuilder<FavoritesCubit, FavoritesState>(
+          builder: (context, state) {
+            return IconButton(
+                onPressed: () async {
+                  await context.read<FavoritesCubit>().updateFavorites(widget.mangaDetails);
+                },
+                icon: const Icon(Icons.favorite),
+                color: state.isFavorite ?? false ? Colors.red : null);
+          },
+        )
       ],
     );
   }

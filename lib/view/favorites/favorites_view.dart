@@ -14,18 +14,22 @@ class FavoritesView extends StatefulWidget {
 class _FavoritesViewState extends State<FavoritesView> {
   @override
   void initState() {
-    context.read<FavoritesCubit>().getInitialFavorites();
+    context.read<FavoritesCubit>().getFavorites();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: const Text("Favorites")),
-        body: context.watch<FavoritesCubit>().state.isNotEmpty
-            ? MangaGridViewWidget(mangaList: context.watch<FavoritesCubit>().state)
-            : const CustomErrorWidget(
-                message: "You don't have any favorites",
-              ));
+    return BlocBuilder<FavoritesCubit, FavoritesState>(
+      builder: (context, state) {
+        return Scaffold(
+            appBar: AppBar(title: const Text("Favorites")),
+            body: (state.favorites ?? []).isNotEmpty
+                ? MangaGridViewWidget(mangaList: state.favorites ?? [])
+                : const CustomErrorWidget(
+                    message: "You don't have any favorites",
+                  ));
+      },
+    );
   }
 }
