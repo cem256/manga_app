@@ -41,7 +41,7 @@ This app is developed with [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93vie
 <pre>
 MIT License
 
-Copyright (c) 2022 Cem
+Copyright (c) 2022 Cem Avcı
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
