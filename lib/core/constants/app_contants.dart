@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../cubit/favorites/favorites_cubit.dart';
 import '../../cubit/search_manga/search_manga_cubit.dart';
 import '../../cubit/top_manga/top_manga_cubit.dart';

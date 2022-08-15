@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../cubit/favorites/favorites_cubit.dart';
 import '../widgets/custom_error_widget.dart';
 import '../widgets/manga_gridview_widget.dart';

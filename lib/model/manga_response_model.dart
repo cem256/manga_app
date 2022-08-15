@@ -1,5 +1,6 @@
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 import '../core/constants/cache_contants.dart';
 
 part 'manga_response_model.g.dart';

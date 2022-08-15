@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'cubit/observer.dart';
 import 'core/constants/app_contants.dart';
 import 'core/theme/app_theme.dart';
 import 'view/bottom_navbar_view.dart';
@@ -13,7 +14,10 @@ void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 
-  runApp(const MangaApp());
+  BlocOverrides.runZoned(
+    () => runApp(const MangaApp()),
+    blocObserver: AppBlocObserver(),
+  );
 }
 
 class MangaApp extends StatelessWidget {

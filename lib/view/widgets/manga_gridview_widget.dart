@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import '../../core/extension/context_extension.dart';
+
 import '../../core/constants/view_constants.dart';
+import '../../core/extension/context_extension.dart';
 import '../../core/router/app_router.dart';
 import '../../model/manga_response_model.dart';
 import '../detail/manga_detail_view.dart';

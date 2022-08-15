@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
+
 import '../core/utils/logger.dart';
 import '../interface/search_manga_interface.dart';
-import '../model/manga_response_model.dart';
 import '../interface/top_manga_interface.dart';
+import '../model/manga_response_model.dart';
 
 class NetworkManager implements ITopManga<MangaResponseModel?>, ISearchManga<MangaResponseModel?> {
   late Dio _dio;

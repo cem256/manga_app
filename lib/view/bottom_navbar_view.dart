@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'favorites/favorites_view.dart';
 import 'home/home_page_view.dart';
 import 'search/search_view.dart';

@@ -1,9 +1,10 @@
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../cubit/search_manga/search_manga_cubit.dart';
-import '../widgets/manga_gridview_widget.dart';
 import '../widgets/custom_error_widget.dart';
+import '../widgets/manga_gridview_widget.dart';
 
 class SearchView extends StatelessWidget {
   SearchView({Key? key}) : super(key: key);
